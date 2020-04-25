@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //ES5自制迭代器
+        // let arr = [1, 2, 3, 4, 5, 6]
+
+        // function iterator(array) {
+        //     let next = 0
+        //     return {
+        //         next: function() {
+        //             let ret = array[next]
+        //             next++
+        //             return {
+        //                 value: ret,
+        //                 done: next > array.length
+        //             }
+        //         },
+        //     }
+        // }
+        // let i = iterator(arr)
+        // let done = false
+        // while (!done) {
+        //     let ret = i.next()
+        //     console.log(ret);
+        //     done = ret.done
+        // }
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        //ES6加入了Symbol对象，其内置属性iterator，可以创建下列数据类型的迭代器
+        //数组，字符串，map,set
+        //因为没有对象，所以需要在对象中自己加Symbol.iterator方法，自己写迭代器。有了迭代器就能被for of用了
+        let arr = [1, 2, 3, 4, 6]
+        let str = "addvfv"
+        let map = new Map([
+            ["k1", "v1"],
+            ["k2", "v2"]
+        ])
+        map.set("k3", "v3")
+        let set = new Set([1, 2, 3, 3, 4])
+
+        //因为自带了迭代器，所以能被for of 利用
+        // function fof(list) {
+        //     for (const value of list) {
+        //         console.log(value);
+        //     }
+        // }
+        // fof(arr)
+        // fof(str)
+        // fof(map)
+        // fof(set)
+
+        //没有自带迭代器的话，就自己加。比如给对象中加迭代器
+        let obj = {
+            name: "kaki",
+            name2: "kaki2",
+            name3: "kaki3",
+            age: "24",
+            [Symbol.iterator]() {
+                let index = 0
+                let that = this
+                return {
+                    next() {
+                        let keys = Object.keys(that)
+                        let propertyName = keys[index++]
+                        return {
+                            value: propertyName,
+                            done: index > keys.length
+                        }
+                    }
+                }
+            }
+        }
+
+        for (const value of obj) {
+            console.log(value);
+        }
+    </script>
+</body>
+
+</html>

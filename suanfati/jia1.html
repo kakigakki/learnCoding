@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * @param {number[]} digits
+         * @return {number[]}
+         */
+        var plusOne = function(digits) {
+
+            var str = digits.join("");
+            var arrNine = str.match(/9{1,}$/g);
+            var numNine = 0;
+            if (arrNine !== null) {
+                numNine = arrNine[0].length;
+            }
+            for (let index = numNine; index > 0; index--) {
+                digits[digits.length - index] = 0;
+            }
+            if (digits.length - numNine === 0) {
+                digits.unshift(1);
+            } else {
+                digits[digits.length - numNine - 1] = digits[digits.length - numNine - 1] + 1;
+            }
+            return digits;
+        };
+        console.log(plusOne([9, 9, 9]));
+    </script>
+</body>
+
+</html>

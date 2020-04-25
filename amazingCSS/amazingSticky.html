@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: black;
+        }
+        
+        div.wrap {
+            display: flex;
+            position: relative;
+            margin-top: 100vh;
+        }
+        
+        .box {
+            position: sticky;
+            top: 0;
+            width: 12.5vw;
+            height: 100vh;
+            background-color: rgb(214, 137, 245);
+            margin-top: calc(100vh * var(--left))
+        }
+        
+        div.wrap2 {
+            display: flex;
+            position: relative;
+            justify-content: center;
+            background-image: linear-gradient(hsl(0, 100%, 50%), hsl(45, 100%, 50%), hsl(90, 100%, 50%), hsl(135, 100%, 50%), hsl(180, 100%, 50%), hsl(225, 100%, 50%), hsl(270, 100%, 50%), hsl(315, 100%, 50%), hsl(360, 100%, 50%));
+        }
+        
+        div.wrap2 span {
+            font-size: 8em;
+            height: 100vh;
+            margin-top: calc(var(--left) * 100vh);
+            color: rgb(0, 0, 0);
+            position: sticky;
+            top: 0;
+            line-height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="box" style="--left:0"></div>
+        <div class="box" style="--left:1"></div>
+        <div class="box" style="--left:2"></div>
+        <div class="box" style="--left:3"></div>
+        <div class="box" style="--left:4"></div>
+        <div class="box" style="--left:5"></div>
+        <div class="box" style="--left:6"></div>
+        <div class="box" style="--left:7"></div>
+        <div class="box" style="--left:8"></div>
+        <div class="box" style="--left:9"></div>
+    </div>
+    <div class="wrap2">
+        <span style="--left :1">み</span>
+        <span style="--left :2">き</span>
+        <span style="--left :3">な</span>
+        <span style="--left :4">だ</span>
+        <span style="--left :5">い</span>
+        <span style="--left :6">す</span>
+        <span style="--left :7">き</span>
+        <span style="--left :8">だ</span>
+        <span style="--left :9">よ</span>
+    </div>
+</body>
+
+</html>

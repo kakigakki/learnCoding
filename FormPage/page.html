@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300i|Trade+Winds&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e516676e72.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-image: linear-gradient(115deg, rgba(135, 79, 161, 0.8), rgba(237, 252, 38, 0.7)), url(https://cdn.freecodecamp.org/testable-projects-fcc/images/survey-form-background.jpeg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+        
+        #text {
+            text-align: center;
+        }
+        
+        #title {
+            font-family: 'Trade Winds';
+            font-size: 35px;
+            margin: 20px 0px 5px 0px;
+            color: rgb(175, 38, 118);
+            text-shadow: black 6px 6px;
+            -webkit-text-stroke: yellow 0.5px;
+        }
+        
+        #description {
+            font-family: 'Trade Winds';
+            font-size: 20px;
+            margin: 0px 0px 20px 0px;
+            color: rgb(175, 38, 118);
+            text-shadow: rgb(229, 255, 0) 2px 2px, rgb(2, 255, 242) 3px 3px;
+            -webkit-text-stroke: rgb(0, 0, 0) 0.3px;
+        }
+        
+        #survey-form {
+            background-image: linear-gradient(115deg, rgba(0, 247, 214, 0.2), rgba(10, 241, 203, 0.3));
+            width: 70%;
+            max-width: 680px;
+            margin: 0 auto;
+            box-shadow: rgb(175, 38, 118, 0.7) 6px 6px, rgb(229, 255, 0, 0.7) 10px 10px, rgb(229, 255, 0, 0.7) -6px -6px, rgb(175, 38, 118, 0.7) -10px -10px;
+        }
+        
+        #survey-form {
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+        }
+        
+        #survey-form .formGroup {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #survey-form .formGroup .formControl,
+        #survey-form .formGroup select,
+        #survey-form .formGroup textarea {
+            height: 35px;
+            border-radius: 0.25rem;
+            background-image: linear-gradient(160deg, rgba(135, 79, 161, 0.5), rgba(237, 252, 38, 0.4), rgba(135, 79, 161, 0.5));
+            border: 2px rgba(3, 248, 85, 0.986) solid;
+            box-shadow: rgba(251, 255, 4, 0.979) 3px 3px;
+            padding-left: 10px;
+        }
+        
+        #survey-form .formGroup textarea {
+            height: 120px;
+            max-width: 800px;
+        }
+        
+        #survey-form .formGroup .formControl::placeholder {
+            font-family: 'Trade Winds';
+            color: rgb(175, 38, 118, 0.7);
+            font-weight: 900;
+            font-style: italic;
+            text-shadow: rgb(53, 255, 3, 0.7) 0.5px 0.5px;
+        }
+        
+        #survey-form .formGroup label,
+        #survey-form .formGroup p,
+        #survey-form .formGroup select {
+            margin-bottom: 8px;
+            font-family: 'Trade Winds';
+            color: rgb(175, 38, 118);
+            font-weight: 900;
+            font-style: italic;
+            text-shadow: rgb(53, 255, 3) 0.5px 0.5px;
+        }
+        
+        #survey-form .formGroup option {
+            margin-bottom: 8px;
+            font-family: 'Trade Winds';
+            color: rgb(175, 38, 118);
+            font-weight: 900;
+            font-style: italic;
+            text-shadow: rgb(53, 255, 3) 0.5px 0.5px;
+            background-color: yellow;
+        }
+        
+        #survey-form .formGroup input[type="checkbox"],
+        #survey-form .formGroup input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            margin-right: 10px;
+            position: relative;
+        }
+        
+        #survey-form .formGroup input[type="checkbox"]::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            background-color: yellow;
+        }
+        
+        #survey-form .formGroup input[type="radio"]::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            background-color: yellow;
+            border-radius: 50%;
+        }
+        
+        #survey-form .formGroup input[type="checkbox"]:checked::before {
+            content: "\f0e7";
+            color: rgb(175, 38, 118);
+            font-weight: 900;
+            text-shadow: black 1px 1px;
+            text-align: center;
+        }
+        
+        #survey-form .formGroup input[type="radio"]:checked::before {
+            content: "\f0e7";
+            color: rgb(175, 38, 118);
+            font-weight: 900;
+            text-shadow: black 1px 1px;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        #survey-form #radioGroup label,
+        #survey-form #checkboxGroup label {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        
+        #survey-form .formGroup #submit {
+            height: 35px;
+            border-radius: 0.25rem;
+            background-color: yellow;
+            border: 1px rgba(3, 248, 85, 0.986) solid;
+            padding-left: 10px;
+            font-family: 'Trade Winds';
+            font-size: 20px;
+            margin: 20px 0px 5px 0px;
+            color: rgb(175, 38, 118);
+            text-shadow: black 1px 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="text">
+        <h1 id="title">
+            freeCodeCamp Survey Form
+        </h1>
+        <p id="description">
+            Thank you for taking the time to help us improve the platform
+        </p>
+    </div>
+    <form action="#" id="survey-form">
+        <div class="formGroup">
+            <label for="name" id="name-label">Name</label>
+            <input type="text" required id="name" class="formControl" placeholder="Enter Your Name">
+        </div>
+        <div class="formGroup">
+            <label for="email" id="email-label">Email</label>
+            <input type="email" required id="email" class="formControl" placeholder="Enter Your Email">
+        </div>
+        <div class="formGroup">
+            <label for="number" id="number-label">Age</label>
+            <input type="number" id="number" min="10" max="99" class="formControl" placeholder="Enter Your Age">
+        </div>
+        <div class="formGroup">
+            <P>Which option best describes your current role?</P>
+            <select name="role" id="role">
+                <option value selected disabled>Select an option</option>
+                <option value="Student">Student</option>
+                <option value="fullTimejob">Full Time Job</option>
+                <option value="fullTimeTeacher">Full Time Teacher</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="formGroup" id="radioGroup">
+            <p>Which option best describes your current role?</p>
+            <label for="Definitely"><input type="radio" name="recommend " class="fas fa-bolt" id="Definitely">Definitely</label>
+            <label for="Maybe"><input type="radio" name="recommend " class="fas fa-bolt" id="Maybe">Maybe</label>
+            <label for="NotSure"><input type="radio" name="recommend " class="fas fa-bolt" id="NotSure">Not sure</label>
+        </div>
+        <div class="formGroup">
+            <P>What is your favorite feature of freeCodeCamp?</P>
+            <select name="feature" id="feature">
+                <option value selected disabled>Select an option</option>
+                <option value="challenge">Challenge</option>
+                <option value="community">Community</option>
+                <option value="project">Project</option>
+                <option value="openSource">Open source</option>
+            </select>
+        </div>
+        <div class="formGroup" id="checkboxGroup">
+            <p>What would you like to see improved? (Check all that apply)</p>
+            <label>
+                <input type="checkbox" class="checkbox fas fa-bolt" value="Front-end Projects">Front-end Projects
+            </label>
+            <label>
+                <input type="checkbox" class="checkbox fas fa-bolt" value="Back-end Projects">Back-end Projects
+            </label>
+            <label>
+                <input type="checkbox" class="checkbox fas fa-bolt" value="Data Visualization">Data Visualization
+            </label>
+            <label>
+                <input type="checkbox" class="checkbox fas fa-bolt" value="Challenges">Challenges
+            </label>
+            <label>
+                <input type="checkbox" class="checkbox fas fa-bolt" value="Open Source Community">Open Source Community
+            </label>
+            <label>
+                <input type="checkbox" class="checkbox fas fa-bolt" value="Gitter help rooms">Gitter help rooms
+            </label>
+            <label>
+                <input type="checkbox" class="checkbox fas fa-bolt" value="Videos">Videos
+            </label>
+            <label>
+                <input type="checkbox" class="checkbox fas fa-bolt" value="City Meetups">City Meetups
+            </label>
+            <label>
+                <input type="checkbox" class="checkbox fas fa-bolt" value="Wiki">Wiki
+            </label>
+            <label>
+                <input type="checkbox" class="checkbox fas fa-bolt" value="Forum">Forum
+            </label>
+            <label>
+                <input type="checkbox" class="checkbox fas fa-bolt" value="Front-end Projects">Additional Courses
+            </label>
+        </div>
+        <div class="formGroup">
+            <p>Any comments or suggestions?</p>
+            <textarea name="comment" id="comment"></textarea>
+        </div>
+        <div class="formGroup" id="buttom">
+            <input type="submit" value="submit" id="submit">
+        </div>
+    </form>
+</body>
+
+</html>

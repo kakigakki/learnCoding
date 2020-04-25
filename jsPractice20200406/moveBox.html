@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #box {
+            position: absolute;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: hotpink;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        window.onload = function() {
+            var box = document.getElementById("box");
+            var speed;
+            var timer;
+            var direction;
+            timer = setInterval(function() {
+                if (direction === 37) {
+                    box.style.left = box.offsetLeft - speed + "px";
+                } else if (direction === 38) {
+                    box.style.top = box.offsetTop - speed + "px"
+                } else if (direction === 39) {
+                    box.style.left = box.offsetLeft + speed + "px"
+                } else if (direction === 40) {
+                    box.style.top = box.offsetTop + speed + "px";
+                }
+            }, 30)
+            document.onkeydown = function(event) {
+                event = event || window.event;
+                speed = 10;
+                direction = event.keyCode;
+                if (event.ctrlKey) {
+                    speed = 50;
+                }
+
+                document.onkeyup = function() {
+                    speed = 0;
+                }
+
+            }
+
+
+
+
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/yuanxingNav.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="nav">
+            <img src="img/clos.png" alt="">
+            <img src="img/full.png" alt="">
+            <img src="img/open.png" alt="">
+            <img src="img/prev.png" alt="">
+            <img src="img/refresh.png" alt="">
+            <img src="img/clos.png" alt="">
+            <img src="img/full.png" alt="">
+            <img src="img/open.png" alt="">
+            <img src="img/prev.png" alt="">
+            <img src="img/refresh.png" alt="">
+        </div>
+        <div class="home">
+
+        </div>
+    </div>
+
+    <div class="photos">
+        <div class="img">1</div>
+        <div class="img">2</div>
+        <div class="img">3</div>
+        <div class="img">4</div>
+        <div class="img">5</div>
+        <div class="img">6</div>
+        <div class="img">7</div>
+        <div class="img">8</div>
+        <div class="img">9</div>
+        <div class="img">10</div>
+
+    </div>
+</body>
+<script>
+    window.onload = function() {
+        var home = document.querySelector(".wrap .home");
+        var imgs = document.querySelectorAll(".wrap .nav img")
+        var c = 100;
+        var flag = true;
+        var delClick = function() {
+            this.style.transition = "0.5s";
+            this.style.transform = "rotate(-720deg) scale(1)";
+            this.style.opacity = "1";
+            this.removeEventListener("transitionend", delClick)
+        }
+
+        home.onclick = function() {
+            if (flag) {
+                this.style.transform = "rotate(-720deg)"
+                for (var index = 0; index < imgs.length; index++) {
+                    imgs[index].style.transform = "rotate(-720deg) scale(1)"
+                    imgs[index].style.transition = "1s " + 0.02 * index + "s"
+                        //写真の場所角度が90以下
+                    if (360 / imgs.length * index <= 90) {
+                        imgs[index].style.left = -getPont(c, 360 / imgs.length * index).sin + "px"
+                        imgs[index].style.top = -getPont(c, 360 / imgs.length * index).cos + "px"
+                    }
+                    //写真の場所角度が90以上、180以下
+                    else if (360 / imgs.length * index > 90 && 360 / imgs.length * index <= 180) {
+                        imgs[index].style.left = -getPont(c, 360 / imgs.length * index - 90).cos + "px"
+                        imgs[index].style.top = getPont(c, 360 / imgs.length * index - 90).sin + "px"
+                    }
+                    //写真の場所角度が180以上、270以下
+                    else if (360 / imgs.length * index > 180 && 360 / imgs.length * index <= 270) {
+                        imgs[index].style.left = getPont(c, 360 / imgs.length * index - 180).sin + "px"
+                        imgs[index].style.top = getPont(c, 360 / imgs.length * index - 180).cos + "px"
+                    } else {
+                        imgs[index].style.left = getPont(c, 360 / imgs.length * index - 270).cos + "px"
+                        imgs[index].style.top = -getPont(c, 360 / imgs.length * index - 270).sin + "px"
+                    }
+                    imgs[index].onclick = function() {
+                        this.style.transition = "0.5s";
+                        this.style.transform = "rotate(-720deg) scale(2)";
+                        this.style.opacity = "0.1";
+                        var photos = document.querySelector(".photos");
+                        var img = document.querySelector(".img")
+                        img.style.opacity = "1"
+                        img.style.backgroundImage = "url(../img/u=1849977433\,450910114&fm=26&gp=0.jpg);"
+                        photos.style.zIndex = "1"
+                        photos.onclick = function() {
+                            this.style.zIndex = "0";
+                            img.style.opacity = "0"
+                        }
+                        this.addEventListener("transitionend", delClick)
+                    }
+
+
+                }
+            } else {
+                //元状態に戻る
+                this.style.transform = "rotate(0deg)"
+                for (var index = 0; index < imgs.length; index++) {
+                    imgs[index].style.transform = "rotate(0deg) scale(1)"
+                    imgs[index].style.transition = "1s " + 0.02 * (imgs.length - index) + "s"
+                    imgs[index].style.left = "0px"
+                    imgs[index].style.top = "0px"
+                }
+            }
+            flag = !flag;
+        }
+
+        var getPont = function(c, deg) {
+            var x = Math.round(c * Math.sin(deg * Math.PI / 180))
+            var y = Math.round(c * Math.cos(deg * Math.PI / 180))
+            return {
+                sin: x,
+                cos: y
+            };
+        }
+    }
+</script>
+
+</html>

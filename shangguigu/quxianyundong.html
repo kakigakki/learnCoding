@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body,
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .wrap {
+            height: 100%;
+            position: relative;
+        }
+        
+        .test {
+            position: absolute;
+            left: 50px;
+            top: 20%;
+            width: 10px;
+            height: 10px;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="test">
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = function() {
+        /** @type {HTMLElement} */
+        var testNode = document.querySelector(".test");
+        /** @type {HTMLElement} */
+        var wrapNode = document.querySelector(".wrap");
+        var startX = testNode.offsetLeft;
+        var startY = testNode.offsetTop;
+        var deg = 0;
+        var length = 100;
+        setInterval(function() {
+            deg = deg + 5;
+            testNode.style.left = startX + (deg * Math.PI / 180) * (length / 2)　 + "px"
+            testNode.style.top = startY + Math.sin(deg * Math.PI / 180) * length + "px"
+            var boxNode = document.createElement("div");
+            boxNode.style.position = "absolute"
+            boxNode.style.border = "1px solid black"
+            boxNode.style.left = testNode.style.left
+            boxNode.style.top = testNode.style.top
+            wrapNode.appendChild(boxNode);
+        }, 1000 / 60)
+
+    }
+</script>
+
+</html>

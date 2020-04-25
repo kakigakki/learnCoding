@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 用box-shadow : 0 20px 50px 0 黑色  可以制作物体的倒影*/
+        /* overflow: hidden 会把阴影也剪切掉，需要设置元素为绝对定位,防止被剪切 */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(2, 50, 56);
+        }
+        
+        .wrap {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .wrap a {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: blanchedalmond;
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 30px 60px;
+            font-size: 30px;
+            box-shadow: 0 20px 50px rgb(1, 18, 20);
+            overflow: hidden;
+        }
+        
+        .wrap a span:nth-child(1) {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 2px;
+            background-image: linear-gradient(to right, rgb(104, 134, 143), rgb(9, 59, 221));
+            transform: translateX(-100%);
+            animation: animate1 1s linear infinite;
+        }
+        
+        @keyframes animate1 {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        .wrap a span:nth-child(2) {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-image: linear-gradient(to bottom, rgb(104, 134, 143), rgb(9, 59, 221));
+            animation: animate2 1s linear infinite;
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes animate2 {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+        }
+        
+        .wrap a span:nth-child(3) {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-image: linear-gradient(to left, rgb(104, 134, 143), rgb(9, 59, 221));
+            animation: animate3 1s linear infinite;
+        }
+        
+        @keyframes animate3 {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        .wrap a span:nth-child(4) {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 100%;
+            width: 2px;
+            background-image: linear-gradient(to top, rgb(104, 134, 143), rgb(9, 59, 221));
+            animation: animate4 1s linear infinite;
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes animate4 {
+            0% {
+                transform: translateY(100%);
+            }
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <a href="#">
+            button
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            
+        </a>
+
+    </div>
+</body>
+
+</html>

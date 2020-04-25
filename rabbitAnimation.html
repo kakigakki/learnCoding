@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .wrap {
+            height: 100%;
+        }
+        
+        .wrap>.rabbit {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 48px;
+            height: 48px;
+            transform: translate(-24px, -24px);
+            background-image: url('img/animation.png');
+            background-position: 0 0;
+            animation: move 0.8s steps(12, end) infinite;
+        }
+        
+        @keyframes move {
+            from {
+                background-position: 0, 0;
+            }
+            to {
+                background-position: -576px, 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="rabbit">
+
+        </div>
+    </div>
+</body>
+
+</html>

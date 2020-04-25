@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var openLock = function(deadends, target) {
+            var node = [];
+            var used　 = [];
+            var count = 0;
+            var direction = [-1, 1];
+            if ("0000" in deadends) {
+                return -1;
+            }
+            if ("0000" === target) {
+                return 0;
+            }
+
+            node.push("0000");
+            while (node.length > 0) {
+                count++;
+                var size = node.length;
+                for (var i = 0; i < size; i++) {
+                    for (var j = 0; j < 4; j++) {
+                        for (var k = 0; k < 2; k++) {
+                            var arr = node[i].split("");
+                            if (arr[j] === "0" && k === 0) {
+                                arr.splice(j, 1, "9")
+                            } else if (arr[j] === "9" && k === 1) {
+                                arr.splice(j, 1, "0")
+                            } else {
+                                arr.splice(j, 1, +arr[j] + direction[k] + "")
+                            }
+                            var number = arr.join("");
+                            if (number === target) {
+                                return count;
+                            }
+                            if (!(number in deadends || number in used)) {
+                                node.push(number);
+                                used.push(number);
+                            }
+
+                        }
+                    }
+                    node.shift();
+                }
+            }
+            return -1;
+
+        };
+
+        openLock(["1199", "1188", "1000"], "1201")
+    </script>
+
+</body>
+
+</html>

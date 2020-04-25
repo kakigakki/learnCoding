@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body,
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .wrap {
+            height: 100%;
+        }
+        
+        #test {
+            background-color: white;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <canvas id="test" width="150px" height="300px">
+
+        </canvas>
+    </div>
+</body>
+<script>
+    window.onload = function() {
+
+        /** @type {HTMLCanvasElement} */
+        var c = document.querySelector("#test")
+        var arr = []
+
+        if (c.getContext("2d")) {
+            var ctx = c.getContext("2d");
+
+            //将圆随机大小，随机颜色生成，加入数组
+            setInterval(() => {
+                var x = Math.random() * 150
+                var r = Math.random() * 6 + 2
+                var y = 300 - Math.random() * 20 - r
+                var red = Math.round(Math.random() * 255)
+                var green = Math.round(Math.random() * 255)
+                var blue = Math.round(Math.random() * 255)
+                var alpha = 1
+                var deg = Math.random() * 10;
+                var step = Math.random() * 100 + 20;
+                arr.push({
+                    x: x,
+                    y: y,
+                    r: r,
+                    red: red,
+                    green: green,
+                    blue: blue,
+                    alpha: alpha,
+                    angleS: 0,
+                    angleE: 2 * Math.PI,
+                    startX: x,
+                    startY: y,
+                    deg: deg,
+                    step: step
+                })
+                ctx.clearRect(0, 0, 150, 300)
+                    //画出圆
+                for (let i = 0; i < arr.length; i++) {
+                    ctx.save();
+                    ctx.fillStyle = "rgba(" + arr[i].red + "," + arr[i].green + "," + arr[i].blue + "," + arr[i].alpha + ")";
+                    ctx.beginPath();
+                    ctx.arc(arr[i].x, arr[i].y, arr[i].r, arr[i].angleS, arr[i].angleE)
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }, 20);
+
+
+            // 画出动画效果
+            setInterval(() => {
+                for (let i = 0; i < arr.length; i++) {
+                    arr[i].deg = arr[i].deg + 5;
+                    arr[i].x = arr[i].startX + Math.sin(Math.PI / 180 * arr[i].deg) * (arr[i].step / 2);
+                    arr[i].y = arr[i].startY - (Math.PI / 180 * arr[i].deg) * (arr[i].step / 2);
+                    if (arr[i].y <= 50) {
+                        arr.splice(i, 1);
+                    }
+                }
+            }, 20);
+
+
+
+        }
+    }
+</script>
+
+</html>

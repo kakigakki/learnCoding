@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+}
+
+.wrap {
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+}
+
+.wrap .home {
+    border-radius: 50%;
+    background: url(../img/home.png) no-repeat;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transition: 1s;
+}
+
+.photos {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+}
+
+.photos .img {
+    border-radius: 50%;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+}
+
+.wrap .nav {
+    height: 100%;
+    width: 100%;
+}
+
+.wrap .nav img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin: 4px;
+    border-radius: 50%;
+}

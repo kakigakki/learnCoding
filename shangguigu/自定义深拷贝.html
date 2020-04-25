@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //利用递归实现深拷贝
+        function deep(obj) {
+            let newObj = Array.isArray(obj) ? [] : {}
+            for (const item in obj) {
+                newObj[item] = obj[item]
+                let type = Object.prototype.toString.call(newObj[item]).slice(8, -1)
+                if (type === "Object" || type === "Array") {
+                    newObj[item] = deep(newObj[item])
+                }
+            }
+            return newObj
+        }
+        let oldArr = [1, 2, 3, {
+            name: "kaki",
+            obj2: {
+                name: "kaki2"
+            }
+        }]
+        let oldObj = {
+            name: "kak1",
+            age: 1,
+            arr: [1, 1, 34, {
+                name: 1
+            }]
+        }
+        let clonedObj = deep(oldObj)
+        clonedObj.name = "kakakakak"
+        clonedObj.arr[3].name = 2
+        console.log(oldObj, clonedObj)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .wrap {
+            height: 100%;
+            background-color: rgb(80, 97, 90);
+        }
+        
+        .wrap>.inner {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+        }
+        
+        .wrap>.inner .moji {
+            position: relative;
+            display: inline;
+            padding: 1px;
+        }
+        
+        @keyframes move {
+            from {
+                top: 0px;
+            }
+            to {
+                top: -20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="inner">
+            <div class="moji">♥</div>
+            <div class="moji">み</div>
+            <div class="moji">♥</div>
+            <div class="moji">き</div>
+            <div class="moji">♥</div>
+            <div class="moji">な</div>
+            <div class="moji">♥</div>
+            <div class="moji">か</div>
+            <div class="moji">♥</div>
+            <div class="moji">き</div>
+            <div class="moji">♥</div>
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = function() {
+        var colors = ["#000", "red", "#000", "pink", "#000", "#cca", "#000", "#baa", "#000", "#bcc", "#000", "#000", ];
+        var mojiNodes = document.querySelectorAll(".wrap>.inner .moji")
+        for (let index = 0; index < mojiNodes.length; index++) {
+            mojiNodes[index].style.animation = " move  alternate infinite 0.2s " + index * 50 + "ms linear"
+            mojiNodes[index].style.color = colors[index]
+        }
+    }
+</script>
+
+</html>

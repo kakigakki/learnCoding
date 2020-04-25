@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>duolengzhu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        html,
+        body {
+            overflow: hidden;
+        }
+        
+        .wrap {
+            width: 1000px;
+            height: 1000px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: blanchedalmond;
+            perspective: 1000px;
+            background-image: url(../img2/9.jpg);
+            background-position: 50% 50%;
+        }
+        
+        .wrap .box {
+            width: 300px;
+            height: 500px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotateY(0deg);
+            transform-style: preserve-3d;
+            transition: 20s;
+        }
+        
+        .wrap .box div {
+            width: 300px;
+            height: 500px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotateY(0deg);
+            font: 50px/300px "Meiryo UI";
+            text-align: center;
+            background-color: rgb(103, 92, 133);
+            transform-style: preserve-3d;
+        }
+        
+        .box:hover {
+            transform: translate(-50%, -50%) rotateY(360deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+    </div>
+</body>
+<script>
+    var fx = function(n) {
+        var wrapNode = document.querySelector(".wrap");
+        var styleNode = document.head.querySelector("style");
+        styleNode.innerHTML += ".wrap .box{transform-origin:center center -" + (300 / 2) * Math.tan(((180 - 360 / n) / 2) * (Math.PI / 180)) + "px}"
+        styleNode.innerHTML += ".wrap .box div{transform-origin:center center -" + (300 / 2) * Math.tan(((180 - 360 / n) / 2) * (Math.PI / 180)) + "px}"
+        var mian = ""
+        for (let index = 1; index <= n; index++) {
+            mian += "<div></div>"
+            styleNode.innerHTML += ".wrap .box div:nth-child(" + index + ") {background-image: url(../img2/" + index + ".jpg); transform: translate(-50%, -50%) rotateY(" + 360 / n * (index - 1) + "deg);} "
+        }
+        wrapNode.innerHTML += "<div class='box'>" + mian + "</div>"
+    }
+    fx(10);
+</script>
+
+</html>

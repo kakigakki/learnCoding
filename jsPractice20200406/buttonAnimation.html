@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="tools.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        button {
+            width: 200px;
+            height: 30px;
+        }
+        
+        #box1 {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 40px;
+            background-color: blueviolet;
+        }
+        
+        #box2 {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 200px;
+            background-color: rgb(43, 226, 104);
+        }
+        
+        #finalLine {
+            position: absolute;
+            left: 800px;
+            top: 0px;
+            height: 100%;
+            width: 1px;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn1">box1_forward</button>
+    <button id="btn2">box1_back</button>
+    <button id="btn3">box2_forward</button>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div id="finalLine"></div>
+
+    <script>
+        window.onload = function() {
+            var btn1Node = document.getElementById("btn1")
+            var btn2Node = document.getElementById("btn2")
+            var btn3Node = document.getElementById("btn3")
+            var box1Node = document.getElementById("box1");
+            var box2Node = document.getElementById("box2");
+            btn1Node.onclick = function() {
+                move(box1Node, "left", 25, "800", function() {
+                    move(box1Node, "width", 25, "800")
+                })
+            }
+            btn2Node.onclick = function() {
+                move(box2Node, "left", 25, "900", function() {
+                    move(box2Node, "height", 25, "900", function() {
+                        move(box1Node, "left", 25, "800", function() {
+                            move(box1Node, "width", 25, "800")
+                        })
+                    })
+                })
+
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sanlengzhu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .wrap {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: blanchedalmond;
+        }
+        
+        .wrap .box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotateY(0deg);
+            transform-style: preserve-3d;
+            perspective: 300px;
+            transform-origin: center center -28.867513459481287px;
+            transition: 3s;
+        }
+        
+        .wrap .box div {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotateY(0deg);
+            font: 50px/100px "Meiryo UI";
+            text-align: center;
+            background-color: rgb(103, 92, 133);
+            transform-style: preserve-3d;
+            transform-origin: center center -28.867513459481287px;
+        }
+        
+        .wrap .box div:nth-child(2) {
+            transform: translate(-50%, -50%) rotateY(120deg);
+        }
+        
+        .wrap .box div:nth-child(3) {
+            transform: translate(-50%, -50%) rotateY(240deg);
+        }
+        
+        .wrap:hover .box {
+            transform: translate(-50%, -50%) rotateY(720deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="box">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+        </div>
+    </div>
+</body>
+
+</html>

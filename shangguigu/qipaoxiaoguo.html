@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body,
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .wrap {
+            height: 100%;
+        }
+        
+        #test {
+            background-color: white;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <canvas id="test" width="300px" height="300px">
+
+        </canvas>
+    </div>
+</body>
+<script>
+    window.onload = function() {
+
+        /** @type {HTMLCanvasElement} */
+        var c = document.querySelector("#test")
+        var arr = []
+        if (c.getContext("2d")) {
+            var ctx = c.getContext("2d");
+            //将圆随机大小，随机颜色生成，加入数组
+            setInterval(() => {
+                var x = Math.random() * 300
+                var y = Math.random() * 300
+                var r = Math.random() * 6 + 6
+                var red = Math.round(Math.random() * 255)
+                var green = Math.round(Math.random() * 255)
+                var blue = Math.round(Math.random() * 255)
+                var alpha = 1
+                arr.push({
+                    x: x,
+                    y: y,
+                    r: r,
+                    red: red,
+                    green: green,
+                    blue: blue,
+                    alpha: alpha,
+                    angleS: 0,
+                    angleE: 2 * Math.PI
+                })
+                ctx.clearRect(0, 0, 300, 300)
+                    //画出圆
+                for (let i = 0; i < arr.length; i++) {
+                    ctx.save();
+                    ctx.fillStyle = "rgba(" + arr[i].red + "," + arr[i].green + "," + arr[i].blue + "," + arr[i].alpha + ")";
+                    ctx.beginPath();
+                    ctx.arc(arr[i].x, arr[i].y, arr[i].r, arr[i].angleS, arr[i].angleE)
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }, 100);
+
+            // 画出动画效果
+            setInterval(() => {
+                for (let i = 0; i < arr.length; i++) {
+                    arr[i].r++
+                        if (arr[i].alpha > 0) {
+                            arr[i].alpha = arr[i].alpha - 0.02
+                        } else {
+                            arr.splice(i, 1);
+                        }
+                    console.log(arr.length)
+                }
+            }, 10);
+
+
+        }
+    }
+</script>
+
+</html>

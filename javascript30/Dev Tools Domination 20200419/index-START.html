@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Console Tricks!</title>
+</head>
+
+<body>
+
+    <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+    <script>
+        const dogs = [{
+            name: 'Snickers',
+            age: 2
+        }, {
+            name: 'hugo',
+            age: 8
+        }];
+
+        function makeGreen() {
+            const p = document.querySelector('p');
+            p.style.color = '#BADA55';
+            p.style.fontSize = '50px';
+        }
+
+        // Regular
+        console.log(dogs[1])
+            // Interpolated
+        console.log("可以替换%s字符串", "自定义")
+        console.log("可以替换%d整数", 123.2)
+        console.log("可以替换%f小数", 124.42);
+        // Styled
+        console.log("%c可以输出自定义样式", "color : red ; font-size : 20px")
+            // warning!
+        console.warn("可以输出警告样式")
+
+        // Error :|
+        console.error("可以输出错误样式");
+        // Info
+        console.info("可以输出普通样式");
+        // Testing
+        console.assert(1 === 1, "对的");
+        console.assert(1 === 0, "1怎么可能等于0？");
+
+        // clearing
+        //console.clear(); //或者按ctrl + L
+
+        // Viewing DOM Elements
+        const p = document.querySelector("p")
+        console.log(p); //输出p标签的整个标签的定义
+        console.dir(p); //输出p标签的所有属性
+
+        // Grouping together
+        dogs.forEach(item => {
+            console.group(item.name) //自动展开
+                // console.groupCollapsed(item.name) //不自动展开
+            console.log(item.name);
+            console.log(item.age);
+            console.log("dog" + item.name + " is " + item.age + "")
+            console.groupEnd()
+        })
+
+        //time
+        console.table(dogs); //用表格的形式展示
+        console.table(dogs, ["age"]); //用表格的形式展示，且只展示age属性
+        console.time("定时器") //计时，然后打印到控制面板，参数名需要与timeEnd的一样
+        setTimeout(() => {
+            console.timeEnd("定时器") //计时，然后打印到控制面板，参数名字需要与time的一样，
+        }, 2000);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.wrap {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    transform-style: preserve-3d;
+    perspective: 800;
+    perspective-origin: center center;
+}
+
+.wrap .inner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: rotateY(0deg) translate(-50%, -50%);
+    transition: 2s;
+    transform-style: preserve-3d;
+    transform-origin: 0% 0% -30px;
+}
+
+.wrap div {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font: 20px/60px "ＭＳ Ｐゴシック";
+    background-color: rgb(42, 167, 156);
+}
+
+.wrap div:nth-child(3) {
+    left: -60px;
+    transform-origin: right;
+    transform: rotateY(-90deg);
+}
+
+.wrap div:nth-child(4) {
+    transform-origin: left;
+    right: -60px;
+    transform: rotateY(90deg);
+}
+
+.wrap div:nth-child(5) {
+    transform-origin: bottom;
+    top: -60px;
+    transform: rotateX(90deg);
+}
+
+.wrap div:nth-child(6) {
+    transform-origin: top;
+    bottom: -60px;
+    transform: rotateX(-90deg);
+}
+
+.wrap div:nth-child(2) {
+    transform: translateZ(-60px) rotateX(180deg)
+}
+
+.wrap .inner:hover {
+    transform: rotateY(-360deg) translate(-50%, -50%);
+}

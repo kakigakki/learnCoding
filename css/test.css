@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.testtransition {
+    height: 100px;
+    width: 100px;
+    background: pink;
+    margin: 0 auto;
+    border-radius: 50%;
+    font: 15px/100px sans-serif;
+    text-align: center;
+    transition: ease 2s;
+}
+
+.testtransition:hover {
+    height: 100px;
+    width: 100px;
+    font: 30px/200px sans-serif;
+    border-radius: 25%;
+    background: chocolate;
+}

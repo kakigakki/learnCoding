@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/e516676e72.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: rgba(223, 188, 208, 0.63);
+        }
+        
+        #header {
+            position: fixed;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 70px;
+            background-color: rgb(107, 175, 230);
+            align-items: center;
+            border-bottom: 1px black solid;
+            transition: 0.5s;
+            margin-top: -70px;
+            z-index: 1;
+        }
+        
+        #header:hover {
+            background-color: rgba(255, 255, 0, 0.651);
+        }
+        
+        #header img {
+            width: auto;
+            height: 40px;
+            display: block;
+        }
+        
+        #header nav {
+            width: 50%;
+            margin-right: 30px;
+        }
+        
+        #header nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        #header nav ul li a {
+            text-decoration: none;
+            color: rgb(53, 53, 53);
+        }
+        
+        #header nav ul li a:hover {
+            text-decoration: none;
+            color: rgb(107, 175, 230);
+        }
+        
+        .book {
+            margin: 70px auto;
+            padding-top: 20px;
+            text-align: center;
+        }
+        
+        .book form input:nth-child(1) {
+            width: 250px;
+            height: 13px;
+            margin: 15px;
+            padding: 5px;
+            border: 1px black solid;
+        }
+        
+        .book form input[type="submit"] {
+            width: 150px;
+            height: 30px;
+            background-color: rgba(255, 255, 0, 0.651);
+            border: 1px black solid;
+            transition: 0.5s;
+            font-size: 15px;
+            font-weight: 800;
+            margin: 10px;
+        }
+        
+        .book form input[type="submit"]:hover {
+            background-color: rgba(0, 0, 0, 0.897);
+            border: 1px black solid;
+            color: blanchedalmond;
+            border: 1px rgba(255, 255, 0, 0.651) solid;
+        }
+        
+        .content {
+            margin: 10px auto;
+            width: auto;
+            max-width: 1000px;
+        }
+        
+        .content .features {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin: 40px 0 40px 0;
+        }
+        
+        .content .features .section {
+            width: 80%;
+        }
+        
+        .content .features .section p {
+            font-size: 14px;
+        }
+        
+        .content .features .icon {
+            width: 15%;
+            color: rgb(57, 202, 118);
+        }
+        
+        .show {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        
+        .show video {
+            width: 100%;
+            max-width: 560px;
+        }
+        
+        .show::before {
+            content: "";
+            display: table;
+        }
+        
+        .pricing {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            max-width: 900px;
+            width: auto;
+            margin: 50px auto;
+        }
+        
+        .pricing .price {
+            border: 1px black solid;
+            background-color: rgba(255, 255, 0, 0.411);
+            width: 270px;
+            height: 270px;
+            text-align: center;
+            margin: 50px 20px 0 20px
+        }
+        
+        .pricing .price h3 {
+            height: 50px;
+            line-height: 50px;
+            background-color: rgba(57, 202, 117, 0.705);
+        }
+        
+        .pricing .priceText {
+            font-size: 30px;
+            height: 50px;
+            line-height: 50px;
+        }
+        
+        .pricing p:not(.priceText) {
+            font-size: 15px;
+            line-height: 25px;
+        }
+        
+        .price input {
+            margin-top: 25px;
+            width: 100px;
+            height: 30px;
+            background-color: rgb(107, 175, 230);
+            border: 1px black solid;
+            transition: 0.2s;
+            font-size: 18px;
+            line-height: 30px;
+        }
+        
+        .price input:hover {
+            background-color: rgba(57, 202, 117, 0.705);
+            color: white;
+            font-weight: 700;
+        }
+        
+        @media (max-width:650px) {
+            #header nav ul {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            #header nav ul li a {
+                font-size: 12px;
+            }
+            .content .features .icon {
+                display: none;
+            }
+            .content .features .section {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .pricing {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <img src="https://s3.amazonaws.com/freecodecamp/original_trombones.png" id="header-img">
+        <nav id="nav-bar">
+            <ul>
+                <li class="nav-link"> <a href="#content">Features</a> </li>
+                <li class="nav-link"><a href="#show">How It Works</a></li>
+                <li class="nav-link"><a href="#pricing">Pricing</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="book">
+        <h2>Handcrafted, home-made masterpieces</h2>
+        <form id="form" action="https://www.freecodecamp.com/email-submit">
+            <input type="email" id="email" placeholder="Enter your Email Adress">
+            </br>
+            <input type="submit" value="GET STARTED">
+        </form>
+    </div>
+
+    <section class="content" id="content">
+        <div class="features">
+            <div class="icon"><i class="fa fa-3x fa-fire"></i></div>
+            <div class="section">
+                <h3>Premium Materials</h1>
+                    <p>
+                        Our trombones use the shiniest brass which is sourced locally. This will increase the longevity of your purchase.
+                    </p>
+            </div>
+        </div>
+        <div class="features">
+            <div class="icon"><i class="fa fa-3x fa-truck"></i></div>
+            <div class="section">
+                <h3>Fast Shipping</h3>
+                <p>
+                    We make sure you recieve your trombone as soon as we have finished making it. We also provide free returns if you are not satisfied.
+                </p>
+            </div>
+        </div>
+        <div class="features">
+            <div class="icon"><i class="fa fa-3x fa-battery-full"></i></div>
+            <div class="section">
+                <h3>Quality Assurance</h3>
+                <p>
+                    For every purchase you make, we will ensure there are no damages or faults and we will check and test the pitch of your instrument.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="show" id="show">
+        <video controls>
+       </video>
+    </div>
+
+    <div class="pricing" id="pricing">
+        <div class="price">
+            <h3>TENOR TROMBONE</h3>
+            <p class="priceText">$600</p>
+            <p>Lorem ipsum.</p>
+            <p>Lorem ipsum.</p>
+            <p>Lorem ipsum dolor.</p>
+            <p>Lorem ipsum.</p>
+            <input type="button" value="SELECT">
+        </div>
+        <div class="price">
+            <h3>BASS TROMBONE</h3>
+            <p class="priceText">$900</p>
+            <p>Lorem ipsum.</p>
+            <p>Lorem ipsum.</p>
+            <p>Lorem ipsum dolor.</p>
+            <p>Lorem ipsum.</p>
+            <input type="button" value="SELECT">
+        </div>
+        <div class="price">
+            <h3>VALVE TROMBONE</h3>
+            <p class="priceText">$1200</p>
+            <p>Plays similar to a Trumpet</p>
+            <p>Great for Jazz Bands</p>
+            <p>Lorem ipsum dolor.</p>
+            <p>Lorem ipsum.</p>
+            <input type="button" value="SELECT">
+        </div>
+    </div>
+
+
+</body>
+
+</html>

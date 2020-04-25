@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #cv {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0);
+            background-color: bisque;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="cv" width="300" height="300">
+
+    </canvas>
+</body>
+
+<script>
+    window.onload = function() {
+        const canvas = document.getElementById('cv');
+        const ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = 'green';
+        ctx.fillRect(10, 10, 150, 100);
+    }
+</script>
+
+</html>

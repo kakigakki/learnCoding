@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/shanxingNavCss.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="nav">
+            <img src="img/clos.png" alt="">
+            <img src="img/full.png" alt="">
+            <img src="img/open.png" alt="">
+            <img src="img/prev.png" alt="">
+            <img src="img/refresh.png" alt="">
+        </div>
+        <div class="home">
+
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    window.onload = function() {
+        var home = document.querySelector(".wrap .home");
+        var imgs = document.querySelectorAll(".wrap .nav>img");
+        var flag = true;
+        var c = 140
+
+        for (var index = 0; index < imgs.length; index++) {
+            imgs[index].onclick = function() {
+                this.style.transition = "0.5s";
+                this.style.transform = "rotate(-720deg) scale(2)"
+                this.style.opacity = "0.1"
+
+                this.addEventListener("transitionend", recover);
+
+            }
+        }
+        var recover = function() {
+            this.style.transition = "0.3s";
+            this.style.transform = "rotate(-720deg) scale(1)";
+            this.style.opacity = "1";
+            this.removeEventListener("transitionend", recover)
+        }
+
+        home.onclick = function() {
+            if (flag) {
+                this.style.transform = "rotate(-720deg)"
+                for (var index = 0; index < imgs.length; index++) {
+                    imgs[index].style.transition = "1s " + 0.05 * index + "s"
+                    imgs[index].style.transform = "rotate(-720deg) scale(1)"
+                    imgs[index].style.left = -getpoint(c, 90 * index / (imgs.length - 1)).left + "px";
+                    imgs[index].style.top = -getpoint(c, 90 * index / (imgs.length - 1)).top + "px";
+                }
+            } else {
+                this.style.transform = "rotate(0deg)"
+                for (var index = 0; index < imgs.length; index++) {
+                    imgs[index].style.transition = "1s " + 0.05 * (imgs.length - index) + "s"
+                    imgs[index].style.transform = "rotate(0deg) scale(1)"
+                    imgs[index].style.left = "0px";
+                    imgs[index].style.top = "0px";
+                }
+            }
+            flag = !flag;
+        }
+
+        //写真のポイントを獲得する
+        var getpoint = function(c, deg) {
+            var x = Math.round(c * Math.sin(deg * Math.PI / 180))
+            var y = Math.round(c * Math.cos(deg * Math.PI / 180))
+            return {
+                left: x,
+                top: y
+            };
+        }
+    }
+</script>
+
+</html>

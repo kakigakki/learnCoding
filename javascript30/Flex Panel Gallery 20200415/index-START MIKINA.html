@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flex Panels 💪</title>
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <style>
+        html {
+            box-sizing: border-box;
+            background: #ffc600;
+            font-family: 'helvetica neue';
+            font-size: 20px;
+            font-weight: 200;
+        }
+        
+        body {
+            margin: 0;
+        }
+        
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+        
+        .panels {
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+        }
+        
+        .panel {
+            background: #6B0F9C;
+            box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+            align-items: center;
+            /* Safari transitionend event.propertyName === flex */
+            /* Chrome + FF transitionend event.propertyName === flex-grow */
+            transition: font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11), flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11), background 0.3s;
+            font-size: 20px;
+            background-size: cover;
+            background-position: center;
+            flex: 1;
+            display: flex;
+            flex-flow: column;
+            justify-content: space-evenly;
+        }
+        
+        .panel1 {
+            background-image: url("img2/1.jpg");
+        }
+        
+        .panel2 {
+            background-image: url("img2/2.jpg");
+        }
+        
+        .panel3 {
+            background-image: url("img2/3.jpg");
+        }
+        
+        .panel4 {
+            background-image: url("img2/4.jpg");
+        }
+        
+        .panel5 {
+            background-image: url("img2/5.jpg");
+        }
+        
+        .panel6 {
+            background-image: url("img2/6.jpg");
+        }
+        
+        .panel7 {
+            background-image: url("img2/7.jpg");
+        }
+        
+        .panel8 {
+            background-image: url("img2/8.jpg");
+        }
+        
+        .panel9 {
+            background-image: url("img2/9.jpg");
+        }
+        
+        .panel10 {
+            background-image: url("img2/10.jpg");
+        }
+        
+        .panel>* {
+            margin: 0;
+            width: 100%;
+            transition: transform 0.5s cubic-bezier(0.71, 2.06, 0.31, 0.26) 0.7s;
+        }
+        
+        .panel p {
+            text-transform: uppercase;
+            font-family: 'Amatic SC', cursive;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+            font-size: 2em;
+        }
+        
+        .panel p:nth-child(2) {
+            font-size: 4em;
+        }
+        
+        .panel p:nth-child(1) {
+            transform: translateY(-50vh);
+        }
+        
+        .panel p:nth-child(3) {
+            transform: translateY(50vh);
+        }
+        
+        .panel.open p:nth-child(1) {
+            transform: translateY(0);
+        }
+        
+        .panel.open p:nth-child(3) {
+            transform: translateY(0);
+        }
+        
+        .panel.open {
+            font-size: 40px;
+            flex: 4;
+        }
+        
+        .cta {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+
+
+    <div class="panels">
+        <div class="panel panel1">
+            <p>♥</p>
+            <p>み</p>
+            <p>♥</p>
+        </div>
+        <div class="panel panel2">
+            <p>♥</p>
+            <p>き</p>
+            <p>♥</p>
+        </div>
+        <div class="panel panel3">
+            <p>♥</p>
+            <p>な</p>
+            <p>♥</p>
+        </div>
+        <div class="panel panel4">
+            <p>♥</p>
+            <p>だ</p>
+            <p>♥</p>
+        </div>
+        <div class="panel panel5">
+            <p>♥</p>
+            <p>い</p>
+            <p>♥</p>
+        </div>
+        <div class="panel panel6">
+            <p>♥</p>
+            <p>す</p>
+            <p>♥</p>
+        </div>
+        <div class="panel panel7">
+            <p>♥</p>
+            <p>き</p>
+            <p>♥</p>
+        </div>
+        <div class="panel panel8">
+            <p>♥</p>
+            <p>だ</p>
+            <p>♥</p>
+        </div>
+        <div class="panel panel9">
+            <p>♥</p>
+            <p>よ</p>
+            <p>♥</p>
+        </div>
+        <div class="panel panel10">
+            <p>♥</p>
+            <p>！</p>
+            <p>♥</p>
+        </div>
+    </div>
+
+    <script>
+        var panelArray = Array.from(document.querySelectorAll(".panel"))
+        panelArray.forEach((item) => {
+            item.addEventListener("click", () => item.classList.toggle("open"), false)
+        })
+    </script>
+</body>
+
+</html>

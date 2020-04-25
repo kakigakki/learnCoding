@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var MyCircularQueue = function(k) {
+            this.data = Array(k).fill("");
+            this.head = 0;
+            this.tail = 0;
+            this.flagSt = true;
+        };
+
+
+        /**
+         * Insert an element into the circular queue. Return true if the operation is successful. 
+         * @param {number} value
+         * @return {boolean}
+         */
+        MyCircularQueue.prototype.enQueue = function(value) {
+            if (this.isFull()) {
+                return false
+            } else {
+                if (!this.flagSt) {
+                    this.tail++;
+                }
+                if (this.tail === this.data.length) {
+                    this.tail = 0;
+                }
+                this.data[this.tail] = value;
+                this.flagSt = false;
+                return true;
+            }
+        };
+
+        /**
+         * Delete an element from the circular queue. Return true if the operation is successful.
+         * @return {boolean}
+         */
+        MyCircularQueue.prototype.deQueue = function() {
+            if (this.isEmpty()) {
+                return false;
+            } else {
+                this.data[this.head] = ""
+                this.head++;
+                if (this.head === this.data.length) {
+                    this.head = 0
+                }
+                if (this.head === this.tail && this.isEmpty()) {
+                    this.head = 0;
+                    this.tail = 0;
+                }
+                return true;
+            }
+        };
+
+        /**
+         * Get the front item from the queue.
+         * @return {number}
+         */
+        MyCircularQueue.prototype.Front = function() {
+            return this.data[this.head] !== 0 ? this.data[this.head] : -1;
+        };
+
+        /**
+         * Get the last item from the queue.
+         * @return {number}
+         */
+        MyCircularQueue.prototype.Rear = function() {
+            return this.data[this.tail] !== 0 ? this.data[this.tail] : -1;
+        };
+
+        /**
+         * Checks whether the circular queue is empty or not.
+         * @return {boolean}
+         */
+        MyCircularQueue.prototype.isEmpty = function() {
+            for (var i = 0; i < this.data.length; i++) {
+                if (this.data[i] !== "") {
+                    return false;
+                }
+            }
+            return true;
+        };
+        /**
+         * Checks whether the circular queue is full or not.
+         * @return {boolean}
+         */
+        MyCircularQueue.prototype.isFull = function() {
+            for (var i = 0; i < this.data.length; i++) {
+                if (this.data[i] === "") {
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        var obj = new MyCircularQueue(6)
+        var param_1 = obj.enQueue(6)
+        var param_1 = obj.enQueue(6)
+        var param_2 = obj.deQueue()
+        var param_2 = obj.deQueue()
+        var param_3 = obj.Front()
+        var param_4 = obj.Rear()
+        var param_5 = obj.isEmpty()
+        var param_6 = obj.isFull()
+    </script>
+</body>
+
+</html>

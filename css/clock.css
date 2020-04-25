@@ -1,0 +1,97 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.wrap {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border: 2px solid #5BC2EB;
+    border-radius: 50%;
+    background-image: url(/img/2980fd19a553082aed420266a9c4c60f_看图王\(1\)_看图王.png);
+    background-position: center right;
+    transition: 1s;
+}
+
+p {
+    position: absolute;
+    font-size: 20px;
+    line-height: 200px;
+    color: pink;
+    left: 42px;
+    opacity: 0;
+    transition: 1s;
+    z-index: 1;
+}
+
+.wrap:hover {
+    background: #5BC2EB;
+}
+
+.wrap:hover p {
+    opacity: 1;
+}
+
+.wrap:hover .point {
+    opacity: 0;
+}
+
+.scale {
+    position: absolute;
+    left: 98.5px;
+    width: 3px;
+    height: 7px;
+    background-color: black;
+    transform-origin: 1.5px 100px;
+}
+
+.board :nth-child(5n+1) {
+    height: 12px;
+    background-color: sienna;
+}
+
+.hour {
+    width: 8px;
+    height: 40px;
+    position: absolute;
+    left: 96px;
+    top: 60px;
+    background-color: rgb(122, 105, 28);
+    transform-origin: center bottom;
+}
+
+.min {
+    width: 6px;
+    height: 60px;
+    position: absolute;
+    left: 97px;
+    top: 40px;
+    background-color: #92DCF4;
+    transform-origin: center bottom;
+}
+
+.sec {
+    width: 5px;
+    height: 80px;
+    position: absolute;
+    left: 97.5px;
+    top: 20px;
+    background-color: #5BC2EB;
+    transform-origin: center bottom;
+}
+
+.point {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: #F5EEE0;
+    opacity: 1;
+}

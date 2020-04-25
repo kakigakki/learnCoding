@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        
+        img {
+            display: block;
+            object-fit: cover;
+            margin: 40px auto;
+        }
+        
+        button {
+            width: 50px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img id="img" src="imgs/1.jpg" alt="">
+    <button id="start" value="start">start</button>
+    <button id="end" value="end">end</button>
+    <script>
+        window.onload = function() {
+            var startBtn = document.getElementById("start");
+            var endBtn = document.getElementById("end");
+            var imgNode = document.getElementById("img");
+            var timer;
+            console.log(imgNode)
+            var imgIndex = 0;
+
+            startBtn.addEventListener("click", function() {
+                clearInterval(timer);
+                timer = setInterval(() => {
+                    imgIndex++;
+                    if (imgIndex > 5) {
+                        imgIndex = 1;
+                    }
+                    imgNode.src = "imgs/" + imgIndex + ".jpg"
+                    console.log(imgNode.src)
+                }, 1500);
+            }, false)
+            endBtn.addEventListener("click", function() {
+                clearInterval(timer);
+            }, false)
+        }
+    </script>
+</body>
+
+</html>

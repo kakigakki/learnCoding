@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dragBox</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #box {
+            position: absolute;
+            left: 0;
+            width: 50px;
+            height: 50px;
+            background-color: brown;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <p>ddddd</p>
+    <div class="box" id="box"></div>
+    <script>
+        window.onload = function() {
+            var boxNode = document.getElementById("box");
+            boxNode.onmousedown = function(event) {
+                event = event || window.event;
+                var boxleft = event.clientX - boxNode.offsetLeft;
+                var boxtop = event.clientY - boxNode.offsetTop;
+                document.documentElement.onmousemove = function(event) {
+                    event = event || window.event;
+                    boxNode.style.left = event.clientX - boxleft + "px";
+                    boxNode.style.top = event.clientY - boxtop + "px";
+                }
+                document.documentElement.onmouseup = function() {
+                    this.onmousemove = null;
+                    this.onmouseup = null;
+                }
+                return false;
+            }
+
+        }
+    </script>
+</body>
+
+</html>

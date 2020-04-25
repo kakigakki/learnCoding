@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var numIslands = function(grid) {
+            if (!grid.length > 0) {
+                return;
+            }
+            //方向
+            var direction = [
+                [-1, 0],
+                [1, 0],
+                [0, -1],
+                [0, 1]
+            ]
+            var count = 0;
+            for (var i = 0; i < grid.length; i++) {
+                for (var j = 0; j < grid[i].length; j++) {
+                    if (grid[i][j] == "1") {
+                        //用数组代替队列
+                        var arr = [];
+                        //将岛的坐标放入队列
+                        arr.push(i * grid[0].length + j);
+                        //沉岛
+                        grid[i][j] = "2";
+                        //开始搜寻
+                        while (arr.length > 0) {
+                            //取出队列第一个坐标
+                            var str = arr.shift();
+                            //获取当前取出元素的坐标
+                            var curX = Math.floor(str / grid[0].length);
+                            var curY = str % grid[0].length;
+                            //在取出的坐标附近搜寻
+                            for (var q = 0; q < direction.length; q++) {
+                                var newX = curX + direction[q][0];
+                                var newY = curY + direction[q][1];
+                                if (newX >= 0 && newX < grid.length && newY >= 0 && newY < grid[0].length) {
+                                    if (grid[newX][newY] == "1") {
+                                        arr.push(newX * grid[0].length + newY);
+                                        grid[newX][newY] = "2";
+                                    }
+                                }
+                            }
+                        }
+                        count++;
+                    }
+                }
+            }
+            return count;
+
+        };
+
+        var c = numIslands([
+            ["1", "1", "1", "1", "0"],
+            ["1", "1", "0", "1", "0"],
+            ["1", "1", "0", "0", "0"],
+            ["0", "0", "0", "0", "0"]
+        ])
+
+        console.log(c)
+    </script>
+</body>
+
+</html>
