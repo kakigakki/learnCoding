@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mouse Shadow</title>
+</head>
+
+<body>
+
+    <div class="hero">
+        <h1 contenteditable>🔥WOAH!</h1>
+    </div>
+
+    <style>
+         :root {
+            --up: 10px;
+            --left: 10px;
+            --right: 10px;
+            --down: 10px;
+        }
+        
+        html {
+            color: black;
+            font-family: sans-serif;
+        }
+        
+        body {
+            margin: 0;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+        }
+        
+        h1 {
+            text-shadow: var(--left) var(--up) 0 rgb(235, 213, 16), var(--right) var(--up) 0 rgb(189, 16, 16), var(--up) var(--left) 0 rgb(10, 138, 48), var(--down) var(--right) 0 rgb(38, 51, 167);
+            font-size: 100px;
+        }
+    </style>
+
+    <script>
+        const h1Node = document.querySelector("h1")
+        document.onmousemove = function(event) {
+            let {
+                width: width,
+                left: left,
+                height: height,
+                top: top
+            } = h1Node.getBoundingClientRect()
+                //获取h1字的中心点
+            let Orign = {
+                    x: width / 2 + left,
+                    y: height / 2 + top
+                }
+                //获取鼠标移动位置离字体中心的距离
+            let shadowY = (Orign.y - event.y) / 2
+            let shadowX = (Orign.x - event.x) / 4
+            document.documentElement.style.setProperty("--left", -shadowX + "px")
+            document.documentElement.style.setProperty("--right", shadowX + "px")
+            document.documentElement.style.setProperty("--up", -shadowY + "px")
+            document.documentElement.style.setProperty("--down", shadowY + "px")
+        }
+    </script>
+</body>
+
+</html>
