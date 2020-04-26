@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /* 
+    异步队列中包括：微任务（micro-task） 和 宏任务（macro-task）
+    微任务包括： process.nextTick ，Promise （ process.nextTick 为 Node 独有）
+    宏任务包括： script ， setTimeout ，setInterval ，setImmediate ，I/O ，UI rendering
+
+    微任务优先级高于宏任务的前提是：同步代码已经执行完成。
+    因为 script  属于宏任务，程序开始后会首先执行同步脚本，也就是script 。
+    Promise 里边的代码属于同步代码，.then() 中执行的代码才属于异步代码。
+     */
+    setTimeout(function ()  {  
+        console.log(" set1");   //three
+        new  Promise(function (resolve)  {    
+            resolve();  
+        }).then(function ()  {    
+            new  Promise(function (resolve)  {      
+                resolve();    
+            }).then(function ()  {      
+                console.log("then4");    //five
+            });    
+            console.log("then2 ");    //four
+        });
+    });
+    new  Promise(function (resolve)  {  
+        console.log("pr1");   //  first
+        resolve();
+    }).then(function ()  {  
+        console.log("then1"); //second
+    });
+    setTimeout(function ()  {  
+        console.log("set2"); //six
+    });
+    console.log(2); // first
+    new  Promise(function (resolve)  {  
+        resolve();
+    }).then(function ()  {  
+        console.log("then3"); //second
+    });
+</script>
+
+</html>
