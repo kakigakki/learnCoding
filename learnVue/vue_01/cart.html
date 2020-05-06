@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <table id="cart">
+        <tr v-for="(item,index1) in books">
+            <td v-for="(value,key,index) in item">
+                <button v-if="key==='count'" @click="add(index1)">+</button> {{value}}
+                <button v-if="key==='count'" @click="minus(index1)">-</button>
+            </td>
+            <td><button @click="remove(index1)">移除</button></td>
+
+        </tr>
+        <td>总价格:{{totalPrice}}</td>
+    </table>
+
+    <script>
+        var app = new Vue({
+            el: "#cart",
+            data: {
+                books: [{
+                    name: "算法导论",
+                    date: "2006-9",
+                    price: "$85.00",
+                    count: 0
+                }, {
+                    name: "UNIX编程艺术",
+                    date: "2006-2",
+                    price: "$59.00",
+                    count: 0
+                }, {
+                    name: "编程珠玑",
+                    date: "2008-10",
+                    price: "$39.00",
+                    count: 0
+                }, {
+                    name: "代码大全",
+                    date: "2006-3",
+                    price: "$128.00",
+                    count: 0
+                }]
+            },
+            methods: {
+                remove: function(index) {
+                    this.books.splice(index, 1)
+                },
+                add(index) {
+                    this.books[index].count++
+                },
+                minus(index) {
+                    this.books[index].count--
+                }
+            },
+            computed: {
+                // 计算属性的 getter
+                totalPrice: function() {
+                    return this.books.reduce((pre, cur) => {
+                        return pre + cur.price.match(/\d*\.\d*/g)[0] * cur.count
+                    }, 0)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
