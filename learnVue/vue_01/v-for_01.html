@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+    <style>
+        .active {
+            color: red
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in movies" @click="changeColor(item)" v-bind:class="{active:item.isActived}">{{item.name}}</li>
+        </ul>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                movies: [{
+                    name: "海贼王",
+                    isActived: false
+                }, {
+                    name: "火影",
+                    isActived: false
+                }, {
+                    name: "死神",
+                    isActived: false
+                }, {
+                    name: "柯南",
+                    isActived: false
+                }],
+                isActived: false
+            },
+            methods: {
+                changeColor: function(item) {
+                    item.isActived = !item.isActived
+                }
+            }
+        })
+    </script>
+</body>
+</body>
+
+</html>
