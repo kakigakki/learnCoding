@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <c1>
+            <template v-slot:default="{user}">
+                <div>{{user.name}}</div>
+            </template>
+            <template v-slot:slot2="{classes:{class1,class2}}">
+                <div>{{class1.student1}}</div>
+            </template>
+        </c1>
+    </div>
+
+    <template id="c1">
+        <div>
+            <hr>
+            <slot :user="user"><button>{{user.name1}}</button></slot>
+            <p>我是子元素1</p>
+            <hr>
+            <p>我是子元素2</p>
+            <slot name="slot2" :classes="classes">
+                <ul>
+                    <li v-for="item in classes">{{item}}</li>
+                </ul>
+            </slot>
+        </div>
+
+    </template>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            components: {
+                c1: {
+                    template: "#c1",
+                    data() {
+                        return {
+                            user: {
+                                name1: "ka",
+                                name2: "ki"
+                            },
+                            classes: {
+                                class1: {
+                                    student1: "1",
+                                    student2: "2"
+                                },
+                                class2: {
+                                    student2: "3",
+                                    student3: "4"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

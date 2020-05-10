@@ -39,21 +39,26 @@
     <script>
         const wrap = document.querySelector(".items")
         let firstPoint
+        let scrollPoint
         wrap.addEventListener("mousedown", function(event) {
-            firstPoint = event.pageX
-            console.log("firstPoint :" + firstPoint);
+            //保存点击时鼠标的坐标
+            firstPoint = event.clientX
+                //保存点击时滚动条滚过的距离
+            scrolledDist = wrap.scrollLeft
+            wrap.classList.add("active")
             this.addEventListener("mousemove", grab)
             this.addEventListener("mouseup", function() {
+                wrap.classList.remove("active")
                 this.removeEventListener("mousemove", grab)
             })
         })
 
-
         let grab = function(event) {
-            console.log(event.pageX);
-            let point = event.pageX
-            wrap.scrollLeft = -(point - firstPoint) * 2
+            let point = event.clientX
+            wrap.scrollLeft = scrolledDist + (-(point - firstPoint) * 2)
             this.addEventListener("mouseup", function() {
+                wrap.classList.remove("active")
+                scrolledDist = wrap.scrollLeft
                 this.removeEventListener("mousemove", grab)
                 this.removeEventListener("mouseup", arguments.callee)
             })

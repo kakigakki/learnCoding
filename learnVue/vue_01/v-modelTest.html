@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <strong>输入框___________</strong>
+        <input type="text" v-model="msg" id="msg">
+        <br>{{msg}}
+        <hr>
+
+        <strong>单选按钮___________</strong>
+        <input type="radio" v-model="sex" id="man" value="man">
+        <label for="man">
+            man
+        </label>
+        <input type="radio" v-model="sex" id="woman" value="woman">
+        <label for="woman">
+            woman
+        </label>
+        <br> {{sex}}
+        <hr>
+        <strong>多选按钮1___________<strong>
+        <label for="apple">苹果</label>
+        <input type="checkbox" id="apple" v-model="hasApple" value="苹果">
+        <br>{{hasApple}}
+        <hr>
+        <strong>多选按钮2___________<strong>
+        <label for="orange">橘子</label>
+        <input type="checkbox" id="orange" v-model="fruit" value="橘子">
+        <label for="cherry">樱桃</label>
+        <input type="checkbox" id="cherry" v-model="fruit" value="樱桃">
+        <label for="peach">桃</label>
+        <input type="checkbox" id="peach" v-model="fruit " value="桃 ">
+        <br>{{fruit}}
+        <hr>
+        <strong>多行文本___________</strong>
+        <textarea name="multipleLine" id="mul" cols="30" rows="10" v-model="multipleLine">
+        </textarea>
+        <br>{{multipleLine}}
+        <hr>
+        <strong>选择框1___________</strong>
+        <select name="sports" id="sports" v-model="sports">
+            <option value="basketball">basketball</option>
+            <option value="tennis">tennis</option>
+            <option value="football">football</option>
+        </select>
+        <br>{{sports}}
+        <hr>
+        <strong>选择框2___________</strong>
+        <select name="cartoon" id="cartoon" v-model="cartoon" multiple>
+            <option value="onepice">basketball</option>
+            <option value="bleach">bleach</option>
+            <option value="dragon ball">dragon ball</option>
+        </select>
+        <br>{{cartoon}}
+        <hr>
+        <strong>值绑定___________</strong>
+        <select name="hobbies" id="hobbies" v-model="newHobbies" multiple>
+            <option v-for="item in hobbies" :value="item">{{item}}</option>
+        </select>
+        <br>{{newHobbies}}
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: "#app ",
+            data: {
+                msg: "man ",
+                sex: "",
+                hasApple: false,
+                fruit: [],
+                multipleLine: "",
+                sports: "",
+                cartoon: [],
+                hobbies: ["read", "exscise", "draw"],
+                newHobbies: []
+            }
+        })
+    </script>
+</body>
+
+</html>

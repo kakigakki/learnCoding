@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <c1 :my-name="myName">
+        </c1>
+    </div>
+    <template id="template1">
+        <h1>{{myName}}</h1>
+    </template>
+    <script>
+        Vue.component("c1", {
+            template: "#template1",
+            props: {
+                myName: {
+                    type: Object,
+                    default () {
+                        return {}
+                    }
+                }
+            }
+        })
+
+
+        const app = new Vue({
+            el: "#app",
+            data: {
+                myName: {
+                    student1: "kaki",
+                    student2: "mikina"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

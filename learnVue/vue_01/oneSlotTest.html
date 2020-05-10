@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <c1 v-slot="{ user }">
+            <div>{{user.name2}}</div>
+        </c1>
+    </div>
+
+    <template id="c1">
+        <div>
+            <hr>
+            <slot :user="user"><button>{{user.name1}}</button></slot>
+            <p>我是子元素</p>
+            <hr>
+            <!-- <p>子按钮</p>
+            <slot name="slot2"><button></button></slot> -->
+        </div>
+
+    </template>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            components: {
+                c1: {
+                    template: "#c1",
+                    data() {
+                        return {
+                            user: {
+                                name1: "ka",
+                                name2: "ki"
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

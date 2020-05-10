@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model.number="pnumber1">
+        <input type="text" v-model.number="pnumber2">
+        <hr>
+        <c1 :num1="pnumber1" :num2="pnumber2" @cnum1emit="cnum1emit" @cnum2emit="cnum2emit">
+        </c1>
+    </div>
+
+    <template id="c1">
+        <div>
+            <p>{{num1}}</p>
+            <p>{{num2}}</p>
+            <input type="text" v-model.number="dcnum1">
+            <input type="text" v-model.number="dcnum2">
+        </div>
+
+    </template>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                pnumber1: 0,
+                pnumber2: 1
+            },
+            methods: {
+                cnum1emit(value) {
+                    this.pnumber1 = value
+                },
+                cnum2emit(value) {
+                    this.pnumber2 = value
+                }
+            },
+            components: {
+                c1: {
+                    template: "#c1",
+                    data() {
+                        return {
+                            dcnum1: this.num1,
+                            dcnum2: this.num2
+                        }
+                    },
+                    props: {
+                        num1: Number,
+                        num2: Number
+                    },
+                    watch: {
+                        dcnum1: function(newValue) {
+                            this.$emit("cnum1emit", newValue)
+
+                        },
+                        dcnum2: function(newValue) {
+                            this.$emit("cnum2emit", newValue)
+                        }
+                    }
+
+                }
+            },
+
+        });
+    </script>
+</body>
+
+</html>
