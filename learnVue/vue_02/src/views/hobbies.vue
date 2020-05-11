@@ -15,7 +15,17 @@
 
 <script>
 export default {
-    name:"Hobbies"
+    name:"Hobbies",
+    activated(){
+        this.$router.push({
+            path:this.path
+        })
+    },
+    beforeRouteLeave(to,from,next){
+        this.path = this.$route.path
+        next()
+    }
+    
 }
 </script>
 
