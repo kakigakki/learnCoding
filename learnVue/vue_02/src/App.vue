@@ -8,7 +8,8 @@
          <router-link :to="{path:'/hobbies',query:{user:user,age:age}}">Hobbies</router-link>|
         <button @click="toHobbies">Hobbies</button>
     </div>
-    <router-view/>
+          <keep-alive> <router-view/></keep-alive>
+         
   </div>
 </template>
 
