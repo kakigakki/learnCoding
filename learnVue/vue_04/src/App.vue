@@ -18,16 +18,12 @@
         <button @click="doubleCounter">模块数值乘2</button>
         <p>当前数值来自模块: {{ $store.state.moduleA.counter2 }}</p>
         <p>当前双倍数值来自模块: {{ $store.getters.doubleCounter }}</p>
-        <hr />
-        <hr />
-        <p>测试网络请求封装模块</p>
-        <button @click="requ">请求网络数据</button>
     </div>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
-import myAxios from "./network/axiosTool";
+
 export default {
     name: "App",
     components: {
@@ -59,12 +55,6 @@ export default {
         },
         doubleCounter() {
             this.$store.commit("doubleCounter");
-        },
-        requ() {
-            myAxios({
-                url: "http://httpbin.org/anything",
-                method: "get",
-            }).then((res) => console.log(res));
         },
     },
 };
