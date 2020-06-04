@@ -1,47 +1,50 @@
-/*  */
+/*  有两个字符串a,b  颠倒a中字符的大小写,颠倒次数为b中出现的字符数*/
 function workOnStrings(a, b) {
-    let aSortedItem = [...a].sort();
-    let bSortedItem = [...b].sort();
-    console.log(aSortedItem);
-    console.log(bSortedItem);
+  let aItems = [...a.toLowerCase()];
+  let bItems = [...b.toLowerCase()];
+  //相同的字符
+  let occurenceItem = new Map(
+    aItems
+    .filter((item) => {
+      return bItems.includes(item);
+    })
+    .map((item) => {
+      return [item, 0];
+    })
+  );
 
-    let aSameNoRepeat = [...new Set(a)].sort();
-    let bSameNoRepeat = [...new Set(b)].sort();
-
-    let occurenceItem = new Map(
-        aSameNoRepeat
-        .filter((item, index, arr) => {
-            return arr[index] === bSameNoRepeat[index];
-        }, bSameNoRepeat)
-        .map((item) => {
-            return [item, 0];
-        })
-    );
-    bSortedItem.forEach((item) => {
-        occurenceItem2.set(item, occurenceItem2.get(item) + 1);
-    });
-    let bResult = b
-        .split("")
-        .map((item) => {
-            if (occurenceItem.get(item) % 2) {
-                return item.toUpperCase();
-            }
-            return item;
-        })
-        .join("");
-
-    aSortedItem.forEach((item) => {
-        occurenceItem.set(item, occurenceItem.get(item) + 1);
-    });
-    let aResult = a
-        .split("")
-        .map((item) => {
-            if (occurenceItem2.get(item) % 2) {
-                return item.toUpperCase();
-            }
-            return item;
-        })
-        .join("");
-    console.log(occurenceItem2);
+  //获取a字符串中,出现相同字符的次数
+  aItems.forEach((item) => {
+    occurenceItem.set(item, occurenceItem.get(item) + 1);
+  });
+  //颠倒B
+  let bResult = [...b]
+    .map((item) =>
+      occurenceItem.get(item.toLowerCase()) % 2 ?
+      item.toLowerCase() == item ?
+      item.toUpperCase() :
+      item.toLowerCase() :
+      item
+    )
+    .join("");
+  //清空相同字符的次数
+  occurenceItem.forEach((value, key) => {
+    occurenceItem.set(key, 0);
+  });
+  //获取b字符串中,出现相同字符的次数
+  bItems.forEach((item) => {
+    occurenceItem.set(item, occurenceItem.get(item) + 1);
+  });
+  //获取颠倒后的a
+  let aResult = [...a]
+    .map((item) =>
+      occurenceItem.get(item.toLowerCase()) % 2 ?
+      item.toLowerCase() == item ?
+      item.toUpperCase() :
+      item.toLowerCase() :
+      item
+    )
+    .join("");
+  return aResult + bResult;
 }
-workOnStrings("abacddac", "bababacfa");
+console.log(workOnStrings("abcdeFgtrzw", "defgGgfhjkwqe"));
