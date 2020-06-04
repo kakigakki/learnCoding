@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        html,
+        body,
+        #app {
+            height: 100%;
+        }
+        
+        #app {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        #header,
+        #footer {
+            height: 50px;
+            background-color: burlywood;
+            text-align: center;
+            line-height: 50px;
+            flex-basis: 100%;
+        }
+        
+        #aside {
+            width: 200px;
+            height: calc(100% - 100px);
+            text-align: center;
+            background-color: aquamarine;
+        }
+        
+        #main {
+            width: calc(100% - 200px);
+            background-color: #eee;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header id="header">header</header>
+        <aside id="aside">aside</aside>
+        <main id="main">main</main>
+        <footer id="footer">footer</footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        html,
+        body,
+        #app {
+            height: 100%;
+        }
+        
+        #header,
+        #footer {
+            height: 50px;
+            background-color: burlywood;
+            text-align: center;
+            line-height: 50px;
+        }
+        
+        section {
+            padding: 0 200px;
+            height: calc(100% - 100px);
+            /* height: 100px; */
+        }
+        
+        #main {
+            float: left;
+            background-color: #eee;
+            text-align: center;
+            height: 100%;
+            width: 100%;
+        }
+        
+        #aside1,
+        #aside2 {
+            float: left;
+            width: 200px;
+            height: 100%;
+            background-color: aquamarine;
+            position: relative;
+            text-align: center;
+        }
+        
+        #aside1 {
+            left: -200px;
+            margin-left: -100%;
+        }
+        
+        #aside2 {
+            right: -200px;
+            margin-left: -200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header id="header">header</header>
+        <section id="section">
+            <main id="main">main</main>
+            <aside id="aside1">aside1</aside>
+            <aside id="aside2">aside2</aside>
+        </section>
+        <footer id="footer">footer</footer>
+    </div>
+</body>
+
+</html>
+
+作者：zhunny 链接：https://juejin.im/post/5c88838fe51d4572a74287ee 来源：掘金 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

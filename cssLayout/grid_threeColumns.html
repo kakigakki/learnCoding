@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        html,
+        body,
+        #app {
+            height: 100%;
+        }
+        
+        #app {
+            display: grid;
+            text-align: center;
+            grid-template-columns: 200px auto 200px;
+            grid-template-rows: 50px auto 50px;
+            grid-template-areas: "header header header" "aside1 main aside2" "footer footer footer";
+        }
+        
+        #header,
+        #footer {
+            background-color: burlywood;
+            text-align: center;
+            line-height: 50px;
+        }
+        
+        #header {
+            grid-area: header;
+        }
+        
+        #main {
+            grid-area: main;
+        }
+        
+        #aside1 {
+            background-color: rgb(135, 202, 222);
+            grid-area: aside1;
+        }
+        
+        #aside2 {
+            background-color: rgb(125, 155, 17);
+            grid-area: aside2;
+        }
+        
+        #footer {
+            grid-area: footer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header id="header">header</header>
+        <main id="main">main</main>
+        <aside id="aside1">aside1</aside>
+        <aside id="aside2">aside2</aside>
+        <footer id="footer">footer</footer>
+    </div>
+</body>
+
+</html>
