@@ -14,3 +14,5 @@ function primeFactors(n) {
   }
   return res;
 }
+
+console.log(primeFactors(100));

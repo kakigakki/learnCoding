@@ -5,6 +5,8 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const mongoose = require("mongoose")
+const dbConfig = require("./db/config")
 
 const index = require('./routes/index')
 const users = require('./routes/users')
@@ -12,9 +14,12 @@ const users = require('./routes/users')
 // error handler
 onerror(app)
 
+//db connect
+mongoose.connect(dbConfig.dbs, { useNewUrlParser: true, useUnifiedTopology: true })
+
 // middlewares
 app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
+  enableTypes: ['json', 'form', 'text']
 }))
 app.use(json())
 app.use(logger())
@@ -25,7 +30,7 @@ app.use(views(__dirname + '/views', {
 }))
 
 // logger
-app.use(async (ctx, next) => {
+app.use(async(ctx, next) => {
   const start = new Date()
   await next()
   const ms = new Date() - start
