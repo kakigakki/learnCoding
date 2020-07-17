@@ -143,6 +143,87 @@ function BinarySearchTree() {
     }
     return cur.key;
   };
+
+  BinarySearchTree.prototype.remove = function(key) {
+    let cur = this.root
+    let prev = null
+    while (cur) {
+      if (key > cur.key) {
+        prev = cur
+        cur = cur.right
+      } else if (key < cur.key) {
+        prev = cur
+        cur = cur.left
+      } else {
+        break
+      }
+    }
+    // 当要删除的是叶子节点时(左右都没有子节点)
+    if (!cur.left && !cur.right) {
+      if (prev.key > key) {
+        prev.left = null
+      } else {
+        prev.right = null
+      }
+    } else if (!cur.left) { //当要删除的节点只存在一个右节点
+      if (prev.key > key) {
+        prev.left = cur.right
+      } else {
+        prev.right = cur.right
+      }
+    } else if (!cur.right) { //当要删除的节点只存在一个左节点
+      if (prev.key > key) {
+        prev.left = cur.left
+      } else {
+        prev.right = cur.left
+      }
+    } else { //当要删除的节点存在两个节点
+      //找出需要删除的节点的后继节点
+      let next = cur.right
+      let nextPrev
+        //当要删除的节点在父节点的右边
+      if (prev.key < key) {
+        //当后继节点是叶子节点时
+        if (!next.left && !next.right) {
+          prev.right = next
+          next.right = null
+          next.left = cur.left
+        } else if (!next.left) { //当后继节点为要删除的元素的下一个节点时
+          prev.right = next
+          next.left = cur.left
+        } else { //当后继节点在深层时
+          while (next.left) {
+            nextPrev = next
+            next = next.left
+          }
+          prev.right = next
+          next.left = cur.left
+          next.right = cur.right
+          nextPrev.left = null
+        }
+      }
+      //当要删除的节点在父节点的右边
+      else if (prev.key > key) {
+        if (!next.left && !next.right) {
+          prev.left = next
+          next.right = null
+          next.left = cur.left
+        } else if (!next.left) {
+          prev.let = next
+          next.left = cur.left
+        } else {
+          while (next.left) {
+            nextPrev = next
+            next = next.left
+          }
+          prev.left = next
+          next.left = cur.left
+          next.right = cur.right
+          nextPrev.left = null
+        }
+      }
+    }
+  }
 }
 
 let bts = new BinarySearchTree();
@@ -175,6 +256,8 @@ let BtsToList = "";
 let handler = function(node) {
   BtsToList += node.key + "=>";
 };
-bts.postOrderTraversal(handler);
-console.log(BtsToList);
+
 console.log(bts.min(), bts.max());
+console.log(bts.remove(16));
+bts.inOrderTraversal(handler);
+console.log(BtsToList);
